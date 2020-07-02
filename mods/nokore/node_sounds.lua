@@ -3,6 +3,16 @@
 --
 -- Works exactly the same, except it's a singleton now.
 --
+local function table_merge(...)
+  local result = {}
+  for _,t in ipairs({...}) do
+    for key,value in pairs(t) do
+      result[key] = value
+    end
+  end
+  return result
+end
+
 nokore.node_sounds = {
   registered = {}
 }
@@ -64,14 +74,14 @@ function nokore.node_sounds:build(name, sound_set)
   local base = self:_build_sound_set(super_sound_set)
   local top = self:_build_sound_set(sound_set)
 
-  return yatm_core.table_merge(base, top)
+  return table_merge(base, top)
 end
 
 function nokore.node_sounds:_build_sound_set(sound_set)
   local base = {}
 
   for _, mixin_name in ipairs(sound_set.extends) do
-    base = yatm_core.table_merge(base, self:build(mixin_name))
+    base = table_merge(base, self:build(mixin_name))
   end
 
   return base
