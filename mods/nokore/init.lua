@@ -11,7 +11,8 @@ nokore = rawget(_G, "nokore") or {}
 function nokore.new_module(name, version, default)
   local mod = rawget(_G, name) or default
   mod._is_nokore_module = true
-  mod.version = version
+  mod.VERSION = version
+  mod.S = minetest.get_translator(name)
   mod.modpath = minetest.get_modpath(minetest.get_current_modname())
   rawset(_G, name, mod)
   return mod
@@ -26,7 +27,7 @@ function nokore.is_module_present(name, optional_version)
 
   if type(value) == "table" then
     if optional_version then
-      return nokore.version:test(value.version, optional_version)
+      return nokore.version:test(value.VERSION, optional_version)
     else
       return true
     end
