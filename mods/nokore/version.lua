@@ -20,8 +20,8 @@ end
 
 local function string_trim_leading_space(str)
   while #str > 0 do
-    if string.sub(str, 1, " ") == " " then
-      str = string.sub(str, 1 + #expected, -1)
+    if string.sub(str, 1, 1) == " " then
+      str = string.sub(str, 2, -1)
     else
       break
     end

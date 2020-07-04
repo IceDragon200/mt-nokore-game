@@ -23,7 +23,7 @@ end
 --
 -- @spec nokore.new_module(name: String, default: Table) :: Table
 function nokore.new_module(name, version, default)
-  local mod = rawget(_G, name) or default
+  local mod = rawget(_G, name) or default or {}
   mod._name = name
   mod._is_nokore_module = true
   mod.VERSION = version
@@ -52,7 +52,7 @@ function nokore.is_module_present(name, optional_version)
 end
 
 -- Bootstrap itself
-new_module("nokore", "0.1.0", nokore)
+nokore.new_module("nokore", "0.1.0", nokore)
 
 nokore.self_test = true
 
