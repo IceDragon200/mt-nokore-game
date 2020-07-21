@@ -1,6 +1,8 @@
 --
+-- NoKore
 --
---
+-- This is the core module of NoKore, it only provides registration helpers
+-- and module creation.
 nokore = rawget(_G, "nokore") or {}
 
 local nokore_module = {}
@@ -31,6 +33,7 @@ function nokore.new_module(name, version, default)
   mod.modpath = minetest.get_modpath(minetest.get_current_modname())
   rawset(_G, name, mod)
   setmetatable(mod, { __index = nokore_module })
+  print("New NoKore Module: " .. mod._name .. " " .. mod.VERSION)
   return mod
 end
 
@@ -58,6 +61,7 @@ nokore.self_test = true
 
 dofile(nokore.modpath .. "/version.lua")
 dofile(nokore.modpath .. "/node_sounds.lua")
+dofile(nokore.modpath .. "/schematic_helpers.lua")
 
 if nokore.self_test then
   assert(nokore.is_module_present("nokore"), "expected nokore itself to be present")
