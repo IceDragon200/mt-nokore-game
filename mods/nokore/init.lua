@@ -7,14 +7,17 @@ nokore = rawget(_G, "nokore") or {}
 
 local nokore_module = {}
 
+-- Helper function for registering a node under the parent mod
 function nokore_module:register_node(name, entry)
   return minetest.register_node(self._name .. ":" .. name, entry)
 end
 
+-- Helper function for registering a craftitem under the parent mod
 function nokore_module:register_craftitem(name, entry)
   return minetest.register_craftitem(self._name .. ":" .. name, entry)
 end
 
+-- Helper function for registering a tool under the parent mod
 function nokore_module:register_tool(name, entry)
   return minetest.register_tool(self._name .. ":" .. name, entry)
 end

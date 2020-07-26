@@ -29,6 +29,8 @@ local function string_trim_leading_space(str)
   return str
 end
 
+-- Parses a string into a version table
+--
 -- @spec nokore.version:parse(str: String) :: Table
 function nokore.version:parse(str)
   local parts = string.split(str, ".")
@@ -40,6 +42,8 @@ function nokore.version:parse(str)
   }
 end
 
+-- Attempts to convert given value into a version table
+--
 -- @spec nokore.version:parse(value: String | Table) :: Table
 function nokore.version:cast(value)
   local typename = type(value)
@@ -52,7 +56,9 @@ function nokore.version:cast(value)
   end
 end
 
--- @spec nokore.version:parse(a: Term, b: Term) :: version.GT | version.LT | version.EQ
+-- Compares given 2 versions, the versions can either be tables or strings
+--
+-- @spec nokore.version:compare(a: Term, b: Term) :: version.GT | version.LT | version.EQ
 function nokore.version:compare(a, b)
   a = self:cast(a)
   b = self:cast(b)
