@@ -1,11 +1,6 @@
 # Nokore API
 
-## Mod Modules
-
-```lua
--- @spec nokore.new_module(name: String, default: Table) :: Table
--- @spec nokore.is_module_present(name: String) :: Boolean
-```
+Nokore is based off foundation, for the module registration check foundation instead.
 
 ## Node Sounds
 
